@@ -20,6 +20,9 @@
         android:label="NoteFragment"
         tools:layout="@layout/fragment_note">
 
+        <argument
+            android:name="note"
+            app:argType="com.metehanbolat.notesapp.data.Note" />
     </fragment>
 
 </navigation>
