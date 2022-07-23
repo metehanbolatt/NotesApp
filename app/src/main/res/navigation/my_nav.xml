@@ -22,7 +22,9 @@
 
         <argument
             android:name="note"
-            app:argType="com.metehanbolat.notesapp.data.Note" />
+            app:argType="com.metehanbolat.notesapp.data.Note"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 
 </navigation>

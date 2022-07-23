@@ -21,16 +21,17 @@ class NoteListFragment : Fragment() {
     private lateinit var notesAdapter: NoteAdapter
     private lateinit var viewModel: NoteViewModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = (activity as MainActivity).viewModel
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNoteListBinding.inflate(inflater, container, false)
-        val view = binding.root
-
-        viewModel = (activity as MainActivity).viewModel
-
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,6 +42,9 @@ class NoteListFragment : Fragment() {
             viewModel.notes.collect { notesList ->
                 notesAdapter.differ.submitList(notesList)
             }
+        }
+
+        lifecycleScope.launchWhenStarted {
             viewModel.searchNotes.collect { searchedNotes ->
                 notesAdapter.differ.submitList(searchedNotes)
             }
@@ -72,6 +76,7 @@ class NoteListFragment : Fragment() {
         binding.rvNotes.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = notesAdapter
+            addItemDecoration(VerticalItemDecoration(40))
         }
     }
 
