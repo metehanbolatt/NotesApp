@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.metehanbolat.notesapp.repositories.NotesRepo
 
-class NotesViewModelProviderFactory(
+class NoteViewModelProviderFactory(
     private val notesRepo: NotesRepo
 ): ViewModelProvider.Factory {
 
